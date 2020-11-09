@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "tslint-config-standard"
+  ],
+  "rules": {
+    "no-empty": false,
+    "strict-type-predicates": false
+  }
+}

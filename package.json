@@ -1,0 +1,52 @@
+{
+  "name": "@grainlogic/cache",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Artyom Kayun",
+    "email": "kayun.artem@gmail.com"
+  },
+  "description": "Caching strategy library",
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/grainlogic/cache/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grainlogic/cache.git"
+  },
+  "homepage": "https://github.com/grainlogic/cache#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "tsc --incremental --watch",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "postbuild": "ts-node ./build.ts && cp LICENSE README.md dist",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "pretest": "rimraf coverage .nyc_output",
+    "test": "nyc --nycrc-path .config/nyc.config.js mocha --config .config/mocha.config.js src/**/*.spec.ts",
+    "posttest": "nyc --nycrc-path .config/nyc.config.js --reporter text report && codecov -f coverage/*.json",
+    "test:watch": "mocha --config .config/mocha.config.js  --watch src/**/*.spec.ts",
+    "preversion": "yarn run lint && yarn run test",
+    "postversion": "yarn run build && git push origin --follow-tag && cd dist && npm publish"
+  },
+  "devDependencies": {
+    "@types/chai": "4.2.12",
+    "@types/mocha": "8.0.0",
+    "@types/node": "10.17.8",
+    "chai": "4.2.0",
+    "codecov": "3.7.2",
+    "mocha": "8.0.1",
+    "nyc": "15.1.0",
+    "rimraf": "3.0.0",
+    "ts-node": "8.10.2",
+    "tslint": "6.1.2",
+    "tslint-config-standard": "9.0.0",
+    "typescript": "3.9.2"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
