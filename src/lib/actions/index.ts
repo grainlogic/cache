@@ -1,0 +1,5 @@
+export { BaseCacheAction } from './BaseCacheAction'
+export { HitCacheAction } from './HitCacheAction'
+export { MissCacheAction } from './MissCacheAction'
+export { UnknownCacheAction } from './UnknownCacheAction'
+export { CacheActionFactory } from './CacheActionFactory'
