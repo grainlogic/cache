@@ -23,14 +23,14 @@
     "start": "tsc --incremental --watch",
     "prebuild": "rimraf dist",
     "build": "tsc",
-    "prerpare-lib": "ts-node ./build.ts && cp LICENSE README.md dist",
+    "prepare-lib": "ts-node ./build.ts && cp LICENSE README.md dist",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "pretest": "rimraf coverage .nyc_output",
     "test": "nyc --nycrc-path .config/nyc.config.js mocha --config .config/mocha.config.js src/**/*.spec.ts",
-    "posttest": "nyc --nycrc-path .config/nyc.config.js --reporter text report && codecov -f coverage/*.json",
+    "posttest": "nyc --nycrc-path .config/nyc.config.js --reporter text report",
     "test:watch": "mocha --config .config/mocha.config.js  --watch src/**/*.spec.ts",
-    "preversion": "yarn run lint && yarn run test && yarn run build",
-    "postversion": "yarn run prerpare-lib && git push origin --follow-tag && cd dist && npm publish"
+    "preversion": "npm run lint && npm run test && npm run build",
+    "postversion": "npm run prepare-lib && git push origin --follow-tag && cd dist && npm publish"
   },
   "devDependencies": {
     "@types/chai": "4.2.12",
@@ -38,15 +38,16 @@
     "@types/node": "10.17.8",
     "chai": "4.2.0",
     "codecov": "3.7.2",
-    "mocha": "8.0.1",
+    "mocha": "10.7.3",
     "nyc": "15.1.0",
     "rimraf": "3.0.0",
     "ts-node": "8.10.2",
     "tslint": "6.1.2",
     "tslint-config-standard": "9.0.0",
-    "typescript": "3.9.2"
+    "typescript": "4.9.5"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "rxjs": "^7.8.1",
+    "tslib": "^2.7.0"
   }
 }
